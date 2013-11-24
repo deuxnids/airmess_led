@@ -2,7 +2,9 @@
 
 from led_classes import *
 
-transmission = Transmission()
 
+
+transmission = Transmission()
+transmission.sendBlackScreen()
 print "Welcome to this LED demo."
 

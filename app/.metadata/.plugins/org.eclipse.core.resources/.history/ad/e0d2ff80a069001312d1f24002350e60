@@ -1,0 +1,63 @@
+package com.example.airmess;
+
+import android.content.ContentValues;
+import android.content.Context;
+
+public class SmsDAO extends DAOBase{
+
+
+	  public static final String SMS_KEY = "id";
+	  public static final String SMS_MESSAGE = "message";
+	  public static final String SMS_NUMBER = "number";
+	  public static final String SMS_DATE = "date";
+	    
+	  public static final String SMS_TABLE_NAME = "Sms";
+	  public static final String SMS_TABLE_CREATE =
+	    "CREATE TABLE " + SMS_TABLE_NAME + " (" +
+	      SMS_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+	      SMS_MESSAGE + " STRING, " +
+	      SMS_DATE + " DATE, " +
+	      SMS_NUMBER + " STRING);";
+
+	  public static final String SMS_TABLE_DROP = "DROP TABLE IF EXISTS " + SMS_TABLE_NAME + ";";
+
+	  public SmsDAO(Context pContext) {
+		super(pContext);
+		// TODO Auto-generated constructor stub
+	}
+	  
+	  /**
+	   * @param m le métier à ajouter à la base
+	   */
+	  public void ajouter(Sms m) {
+		  ContentValues value = new ContentValues();
+		  value.put(SmsDAO.SMS_MESSAGE, m.getMessage());
+		  value.put(SmsDAO.SMS_NUMBER, m.getNumber());
+		  value.put(SmsDAO.SMS_DATE, m.getDate());
+		  mDb.insert(SmsDAO.SMS_TABLE_NAME, null, value);
+	  }
+
+	  /**
+	   * @param id l'identifiant du métier à supprimer
+	   */
+	  public void supprimer(long id) {
+		  mDb.delete(SMS_TABLE_NAME, SMS_KEY + " = ?", new String[] {String.valueOf(id)});
+	  }
+
+	  /**
+	   * @param m le métier modifié
+	   */
+	  public void modifier(Sms m) {
+		  ContentValues value = new ContentValues();
+		  value.put(SMS_MESSAGE, m.getMessage());
+		  mDb.update(SMS_TABLE_NAME, value, KEY  + " = ?", new String[] {String.valueOf(m.getId())});
+	  }
+
+	  /**
+	   * @param id l'identifiant du métier à récupérer
+	   */
+	  public Sms selectionner(long id) {
+	    // CODE
+	  }
+
+}

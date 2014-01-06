@@ -1,0 +1,46 @@
+package com.example.airmess;
+
+public class Transmission {
+	
+	udp_port = 54321
+	udp_italk= 12345
+	led_ip   = '192.168.1.201'
+	
+	public Transmission()
+	   {
+		
+		self.mess = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+		self.mess.setsockopt(socket.SOL_IP, socket.IP_TTL, 128)
+		self.mess.bind(('', 50021))
+
+		self.man = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+		self.man.setsockopt(socket.SOL_IP, socket.IP_TTL, 128)
+		# timeout set to 5 sec
+		self.man.settimeout(5)
+	 
+	   }
+	
+	def sendCmds(self,cmds):
+		for cmd in cmds:
+			self.mess.sendto(binascii.unhexlify(cmd), (self.led_ip, self.udp_port)) 
+			
+			
+	def wakeUp(self):
+		binary_string = binascii.unhexlify('24440003')
+		self.man.sendto(binary_string, (self.led_ip, self.udp_italk))
+		print 'wakeup:		 sent'
+		data = self.man.recv(4096)
+		print 'wakeup:		'+str(data)
+		
+		
+		
+		
+	def warmUp(self):
+		binary_string = binascii.unhexlify('00dd')
+		self.man.sendto(binary_string, (self.led_ip, self.udp_port))
+		print 'warmup:		 sent'
+
+			
+			
+
+}

@@ -1,0 +1,12 @@
+package com.example.airmess;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+
+public class SmsDAO extends DAOBase{
+
+
+
+
+}

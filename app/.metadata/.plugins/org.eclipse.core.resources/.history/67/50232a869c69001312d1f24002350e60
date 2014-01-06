@@ -1,0 +1,40 @@
+package com.example.airmess;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class DatabaseHandler extends SQLiteOpenHelper {
+
+	  public static final String SMS_KEY = "id";
+	  public static final String SMS_MESSAGE = "intitule";
+	  public static final String METIER_SALAIRE = "salaire";
+	    
+	  public static final String METIER_TABLE_NAME = "Metier";
+	  public static final String METIER_TABLE_CREATE =
+	    "CREATE TABLE " + METIER_TABLE_NAME + " (" +
+	      METIER_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+	      METIER_INTITULE + " TEXT, " +
+	      METIER_SALAIRE + " REAL);";
+
+	  public static final String METIER_TABLE_DROP = "DROP TABLE IF EXISTS " + METIER_TABLE_NAME + ";";
+
+	
+	public DatabaseHandler(Context context, String name, CursorFactory factory, int version) {
+	    super(context, name, factory, version);
+	  }
+	
+	@Override
+	public void onCreate(SQLiteDatabase db) {
+		db.execSQL(METIER_TABLE_CREATE);
+
+	}
+
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int arg1, int arg2) {
+		  db.execSQL(METIER_TABLE_DROP);
+		  onCreate(db);
+
+	}
+}

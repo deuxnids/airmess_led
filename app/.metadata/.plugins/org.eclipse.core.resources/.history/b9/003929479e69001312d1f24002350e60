@@ -1,0 +1,42 @@
+package com.example.airmess;
+
+public class Sms {
+	  // Notez que l'identifiant est un long
+	  private long id;
+	  private String message;
+	  private String number;
+	  private String date;
+	  
+	  public Sms(long id, String message, String number, String date) {
+	    super();
+	    this.id = id;
+	    this.message = message;
+	    this.number = number;
+	    this.date = date;
+	  }
+
+	  public long getId() {
+	    return id;
+	  }
+
+	  public void setId(long id) {
+	    this.id = id;
+	  }
+
+	  public String getMessage() {
+	    return message;
+	  }
+
+	  public void setMessage(String message) {
+	    this.message = message;
+	  }
+
+	  public float getSalaire() {
+	    return salaire;
+	  }
+
+	  public void setSalaire(float salaire) {
+	    this.salaire = salaire;
+	  }
+
+	}

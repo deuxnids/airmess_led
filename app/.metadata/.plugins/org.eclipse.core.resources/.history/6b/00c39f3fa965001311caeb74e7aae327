@@ -1,0 +1,14 @@
+package com.example.airmess;
+
+public class Transmission {
+	
+	udp_port = 54321
+	udp_italk= 12345
+	led_ip   = '192.168.1.201'
+	
+	public Transmission()
+	   {
+	 
+	   }
+
+}

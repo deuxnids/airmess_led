@@ -1,0 +1,55 @@
+package com.example.airmess;
+
+public class Transmission {
+	
+	udp_port = 54321
+	udp_italk= 12345
+	led_ip   = '192.168.1.201'
+	
+	public Transmission()
+	   {
+		
+		self.mess = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+		self.mess.setsockopt(socket.SOL_IP, socket.IP_TTL, 128)
+		self.mess.bind(('', 50021))
+
+		self.man = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+		self.man.setsockopt(socket.SOL_IP, socket.IP_TTL, 128)
+		# timeout set to 5 sec
+		self.man.settimeout(5)
+	 
+	   }
+	
+	def sendCmds(self,cmds):
+		for cmd in cmds:
+			self.mess.sendto(binascii.unhexlify(cmd), (self.led_ip, self.udp_port)) 
+			
+			
+	def wakeUp(self):
+		binary_string = binascii.unhexlify('24440003')
+		self.man.sendto(binary_string, (self.led_ip, self.udp_italk))
+		print 'wakeup:		 sent'
+		data = self.man.recv(4096)
+		print 'wakeup:		'+str(data)
+		
+		
+		
+		
+
+
+			def getCmds(self,im):
+		cmds = ['01dd','02dd','fedd']
+		for i in range(96*16/3):
+			col = '0000' if im.getpixel((i%96, 15-int(i/96)))[0] == 0 else '0100'
+			cmds[0] = cmds[0]+ col
+			col = ('0000' if im.getpixel((((96*16/3)%96+i)%96 , 15-int(i/96) - int(16.0/3)   ))[0] == 0 else '0100'	 )
+			cmds[1] = cmds[1]+ col
+			col =  ('0000' if im.getpixel((((2*96*16/3)%96+i)%96,15-int(i/96) - int(16.0/3*2) ))[0] == 0 else '0100'	 )
+			cmds[2] = cmds[2]+ col
+
+		return cmds
+
+			
+			
+
+}

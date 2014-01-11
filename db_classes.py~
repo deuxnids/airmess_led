@@ -13,7 +13,7 @@ class Db:
 		cursor = db.cursor()
 
 		# Prepare SQL query to INSERT a record into the database.
-		sql = "SELECT Message FROM Sms order by Date ASC limit 5" 
+		sql = "SELECT Message FROM Sms order by Date DESC limit 5" 
 		try:
 			# Execute the SQL command
 			cursor.execute(sql)

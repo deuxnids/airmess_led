@@ -7,7 +7,7 @@ class Db:
 		self.user = "localUser"
 
 	def fetch(self):
-		db = MySQLdb.connect("localhost","localUser","localUser","airmess" )
+		db = MySQLdb.connect("localhost","root","airmess","airmess" )
 		massages = []
 		# prepare a cursor object using cursor() method
 		cursor = db.cursor()
